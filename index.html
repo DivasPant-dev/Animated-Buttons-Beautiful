@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beutiful Button Animation</title>
+
+    <style>
+        body {
+            display: flex;
+            margin: 0;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .btn1 {
+            border-radius: 20px 0px 0px 20px;
+        }
+
+        .btn2 {
+            border-radius: 0px 20px 20px 0px;
+            border-left: 0;
+        }
+
+        button {
+            padding: 20px 40px;
+            font-size: 1.2rem;
+            border: 3px solid blue;
+            position: relative;
+            overflow: hidden;
+            
+            background-color: rgb(0, 100, 255);
+            color: white;
+        }
+
+
+
+        .active {
+            background-color: blue;
+        }
+
+        .lol1::after {
+            content: "";
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            background-color: rgb(0, 0, 255, 0.2);
+            top: 0;
+            left: 110%;
+            animation: lol1 1.5s linear;
+            border-radius: 20px 0 0 20px;
+        }
+
+        div {
+            display: flex;
+        }
+
+        @keyframes lol1 {
+            0% {
+
+            }
+
+            50% {
+                left: 0;
+            }
+
+            100% {
+
+            }
+        }
+
+        .lol2::after {
+            content: "";
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            background-color: rgba(0, 0, 255, 0.2);
+            top: 0;
+            right: 110%;
+            animation: lol2 1.5s linear;
+            border-radius: 0 20px 20px 0;
+        }
+
+        @keyframes lol2 {
+            0% {
+
+            }
+
+            50% {
+                right: 0;
+            }
+
+            100% {
+
+            }
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <button class="btn1" onclick="btn1()">
+            XXX
+        </button>
+    
+        <button class="btn2" onclick="btn2()">
+            XXX
+        </button>    
+    </div>
+
+    <script>
+        const btnn1 = document.querySelector(".btn1");
+        const btnn2 = document.querySelector(".btn2");
+        let x1 = 0;
+        let x2 = 0;
+
+        function btn1() {
+            if (btnn2.classList.contains("active")) {
+                btnn2.classList.remove("active");
+                btnn1.classList.add("active");
+                btnn1.classList.toggle("lol");
+                btnn2.classList.add("lol");
+            } else {
+                btnn1.classList.toggle("active");
+                btnn1.classList.toggle("lol");
+            }
+        }
+
+        function btn2() {
+            if (btnn1.classList.contains("active")) {
+                btnn1.classList.remove("active");
+                btnn2.classList.add("active");
+                btnn2.classList.toggle("lol");
+                btnn1.classList.add("lol");
+            } else {
+                btnn2.classList.toggle("active");
+                btnn2.classList.toggle("lol");
+            }
+        }
+
+        btnn1.addEventListener("mouseover", ()=> {
+            if (!btnn1.classList.contains("active")) {
+                btnn1.classList.add("lol1");
+
+                btnn1.addEventListener("animationend", ()=> {
+                    btnn1.classList.remove("lol1");
+                });
+            }
+        });
+
+
+
+        btnn2.addEventListener("mouseover", ()=> {
+            if (!btnn2.classList.contains("active")) {
+                btnn2.classList.add("lol2");
+
+                btnn2.addEventListener("animationend", ()=> {
+                    btnn2.classList.remove("lol2");
+                });
+            }
+        });
+    </script>
+</body>
+</html>
